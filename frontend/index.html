@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Appointment Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="top-nav">
+        <span class="logo">AssistBook</span>
+        <button class="ghost" id="request-demo">Request Demo</button>
+      </nav>
+      <div class="hero-content">
+        <div>
+          <p class="eyebrow">AI Appointment Assistant</p>
+          <h1>Reduce no-shows and manage bookings in minutes.</h1>
+          <p class="subhead">
+            An AI-powered scheduling assistant built for solo service businesses. Book faster, send
+            reminders, and keep client notes in one place.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="create-booking-link">Create Booking Link</button>
+            <button class="ghost" id="view-dashboard">View Dashboard</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h2>Today’s overview</h2>
+          <ul>
+            <li><strong>4</strong> upcoming appointments</li>
+            <li><strong>2</strong> reminders queued</li>
+            <li><strong>1</strong> new client this week</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card" id="booking-card">
+        <h2>New booking</h2>
+        <p class="muted">Capture appointments and sync them to your calendar.</p>
+        <form id="booking-form">
+          <label>
+            Client name
+            <input type="text" name="full_name" placeholder="Jane Doe" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" placeholder="(555) 123-4567" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="jane@email.com" />
+          </label>
+          <label>
+            Service
+            <select name="service_id" id="service-select" required>
+              <option value="">Select a service</option>
+            </select>
+          </label>
+          <div class="two-col">
+            <label>
+              Start time
+              <input type="datetime-local" name="start_time" required />
+            </label>
+            <label>
+              End time
+              <input type="datetime-local" name="end_time" required />
+            </label>
+          </div>
+          <button type="submit" class="primary">Book appointment</button>
+          <p id="booking-status" class="muted"></p>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Upcoming appointments</h2>
+        <p class="muted">AI reminders and rescheduling suggestions appear here.</p>
+        <ul id="appointments" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Calendar glance</h2>
+        <p class="muted">Scan daily availability and upcoming visits.</p>
+        <div id="calendar" class="calendar"></div>
+      </section>
+
+      <section class="card">
+        <h2>Client notes</h2>
+        <p class="muted">Quickly review preferences before each visit.</p>
+        <div id="clients" class="pill-grid"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
