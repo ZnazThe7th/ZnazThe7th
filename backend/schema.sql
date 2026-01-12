@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS services (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  duration_minutes INTEGER NOT NULL,
+  price_cents INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS clients (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  full_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT,
+  notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS appointments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  service_id INTEGER NOT NULL,
+  client_id INTEGER NOT NULL,
+  start_time TEXT NOT NULL,
+  end_time TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'booked',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(service_id) REFERENCES services(id),
+  FOREIGN KEY(client_id) REFERENCES clients(id)
+);

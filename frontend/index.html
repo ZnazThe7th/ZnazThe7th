@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Appointment Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span class="brand-text">Halo Assist</span>
+        </div>
+        <div class="sidebar-card">
+          <h4>Safety-equipment for schedules</h4>
+          <p>Built for solo operators who want reliable bookings.</p>
+          <button class="ghost" id="view-dashboard">View dashboard</button>
+        </div>
+        <div class="sidebar-stat">
+          <span>99%</span>
+          <p>Show-up rate with smart reminders</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="top-nav">
+          <nav class="nav-links">
+            <a href="#booking-card">Catalog</a>
+            <a href="#calendar">Availability</a>
+            <a href="#clients-section">Clients</a>
+            <a href="#booking-card">About</a>
+          </nav>
+          <div class="nav-actions">
+            <input type="search" placeholder="Search bookings" />
+            <button class="primary" id="request-demo">Request demo</button>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">AI Appointment Assistant</p>
+            <h1>MADE FOR REAL WORKDAYS.</h1>
+            <p class="subhead">
+              Turn messy scheduling into a precise, automated flow. Sync calendars, prevent double
+              bookings, and send reminders in seconds.
+            </p>
+            <div class="hero-actions">
+              <button class="primary" id="create-booking-link">Create booking link</button>
+              <button class="ghost">See workflow</button>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="panel-card">
+              <h3>Today’s protection plan</h3>
+              <ul>
+                <li><strong>4</strong> upcoming sessions</li>
+                <li><strong>2</strong> reminders queued</li>
+                <li><strong>1</strong> new client this week</li>
+              </ul>
+            </div>
+            <div class="panel-card highlight">
+              <h3>Reminder status</h3>
+              <p>Next reminder sends in 1h 12m.</p>
+              <button class="primary">Send follow-up</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid">
+          <article class="card" id="booking-card">
+            <h2>New booking intake</h2>
+            <p class="muted">Capture appointments and sync them to your calendar.</p>
+            <form id="booking-form">
+              <label>
+                Client name
+                <input type="text" name="full_name" placeholder="Jane Doe" required />
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" placeholder="(555) 123-4567" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="jane@email.com" />
+              </label>
+              <label>
+                Service
+                <select name="service_id" id="service-select" required>
+                  <option value="">Select a service</option>
+                </select>
+              </label>
+              <div class="two-col">
+                <label>
+                  Start time
+                  <input type="datetime-local" name="start_time" required />
+                </label>
+                <label>
+                  End time
+                  <input type="datetime-local" name="end_time" required />
+                </label>
+              </div>
+              <button type="submit" class="primary">Book appointment</button>
+              <p id="booking-status" class="muted"></p>
+            </form>
+          </article>
+
+          <article class="card">
+            <h2>Upcoming appointments</h2>
+            <p class="muted">AI reminders and rescheduling suggestions appear here.</p>
+            <ul id="appointments" class="list"></ul>
+          </article>
+
+          <article class="card">
+            <h2>Calendar glance</h2>
+            <p class="muted">Scan daily availability and upcoming visits.</p>
+            <div id="calendar" class="calendar"></div>
+          </article>
+
+          <article class="card" id="clients-section">
+            <h2>Client notes</h2>
+            <p class="muted">Quickly review preferences before each visit.</p>
+            <div id="clients" class="pill-grid"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
