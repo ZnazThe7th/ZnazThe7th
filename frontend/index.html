@@ -10,7 +10,7 @@
     <header class="hero">
       <nav class="top-nav">
         <span class="logo">AssistBook</span>
-        <button class="ghost">Request Demo</button>
+        <button class="ghost" id="request-demo">Request Demo</button>
       </nav>
       <div class="hero-content">
         <div>
@@ -21,8 +21,8 @@
             reminders, and keep client notes in one place.
           </p>
           <div class="hero-actions">
-            <button class="primary">Create Booking Link</button>
-            <button class="ghost">View Dashboard</button>
+            <button class="primary" id="create-booking-link">Create Booking Link</button>
+            <button class="ghost" id="view-dashboard">View Dashboard</button>
           </div>
         </div>
         <div class="hero-card">
@@ -37,7 +37,7 @@
     </header>
 
     <main class="grid">
-      <section class="card">
+      <section class="card" id="booking-card">
         <h2>New booking</h2>
         <p class="muted">Capture appointments and sync them to your calendar.</p>
         <form id="booking-form">
@@ -78,6 +78,12 @@
         <h2>Upcoming appointments</h2>
         <p class="muted">AI reminders and rescheduling suggestions appear here.</p>
         <ul id="appointments" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Calendar glance</h2>
+        <p class="muted">Scan daily availability and upcoming visits.</p>
+        <div id="calendar" class="calendar"></div>
       </section>
 
       <section class="card">

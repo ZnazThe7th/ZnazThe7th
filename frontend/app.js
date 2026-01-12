@@ -4,6 +4,11 @@ const serviceSelect = document.querySelector("#service-select");
 const bookingForm = document.querySelector("#booking-form");
 const bookingStatus = document.querySelector("#booking-status");
 const appointmentsList = document.querySelector("#appointments");
+const calendarWrap = document.querySelector("#calendar");
+const bookingCard = document.querySelector("#booking-card");
+const createBookingLinkBtn = document.querySelector("#create-booking-link");
+const viewDashboardBtn = document.querySelector("#view-dashboard");
+const requestDemoBtn = document.querySelector("#request-demo");
 const clientsWrap = document.querySelector("#clients");
 
 const formatDateTime = (value) => {
@@ -44,6 +49,45 @@ const loadAppointments = async () => {
       ${appointment.service_name} · ${formatDateTime(appointment.start_time)}
     `;
     appointmentsList.appendChild(item);
+  });
+  renderCalendar(appointments);
+};
+
+const renderCalendar = (appointments) => {
+  const grouped = appointments.reduce((accumulator, appointment) => {
+    const dateKey = appointment.start_time.split("T")[0];
+    accumulator[dateKey] = accumulator[dateKey] || [];
+    accumulator[dateKey].push(appointment);
+    return accumulator;
+  }, {});
+
+  const sortedDates = Object.keys(grouped).sort();
+  calendarWrap.innerHTML = "";
+
+  if (!sortedDates.length) {
+    calendarWrap.innerHTML = "<p class=\"muted\">No bookings yet.</p>";
+    return;
+  }
+
+  sortedDates.forEach((dateKey) => {
+    const dayCard = document.createElement("div");
+    dayCard.className = "calendar-day";
+    const title = new Date(dateKey).toLocaleDateString(undefined, {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+    dayCard.innerHTML = `<h3>${title}</h3>`;
+
+    const list = document.createElement("ul");
+    list.className = "calendar-list";
+    grouped[dateKey].forEach((appointment) => {
+      const item = document.createElement("li");
+      item.textContent = `${appointment.client_name} · ${appointment.service_name}`;
+      list.appendChild(item);
+    });
+    dayCard.appendChild(list);
+    calendarWrap.appendChild(dayCard);
   });
 };
 
@@ -130,5 +174,18 @@ const init = async () => {
     bookingStatus.textContent = "Unable to reach backend API.";
   }
 };
+
+createBookingLinkBtn.addEventListener("click", () => {
+  bookingCard.scrollIntoView({ behavior: "smooth", block: "start" });
+  bookingStatus.textContent = "Share your booking link from this form.";
+});
+
+viewDashboardBtn.addEventListener("click", () => {
+  appointmentsList.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+requestDemoBtn.addEventListener("click", () => {
+  bookingStatus.textContent = "Thanks! We'll reach out to schedule a demo.";
+});
 
 init();
